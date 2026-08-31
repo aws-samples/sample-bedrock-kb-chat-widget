@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+
+# Local, untracked test rigs / env — never commit account IDs, KB IDs, ARNs, or creds
+.local/
+.env
+.env.*
+demo/config.local.json

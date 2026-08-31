@@ -1,0 +1,4 @@
+{
+  "backendUrl": "http://localhost:3900/api/ask",
+  "knowledgeBaseIds": ["<your-knowledge-base-id>"]
+}

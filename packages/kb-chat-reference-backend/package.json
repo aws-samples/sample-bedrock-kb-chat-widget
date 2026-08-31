@@ -1,0 +1,21 @@
+{
+  "name": "@sample/kb-chat-reference-backend",
+  "version": "0.1.0",
+  "description": "Reference Node.js backend that calls Bedrock Knowledge Bases / Agentic Retrieval with the AWS SDK for JavaScript and streams NDJSON events in the @sample/kb-chat-core wire format. Meant to be adapted, not depended on as-is.",
+  "type": "module",
+  "main": "./dist/server.js",
+  "scripts": {
+    "build": "tsup src/server.ts --format esm --shims",
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.1092.0",
+    "@sample/kb-chat-core": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.1"
+  },
+  "license": "MIT-0"
+}
