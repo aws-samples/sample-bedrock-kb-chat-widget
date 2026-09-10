@@ -10,6 +10,12 @@ no expectation of ongoing releases or bug fixes here.
 No AWS credentials in the browser: your own backend calls Bedrock, everything here
 only renders what that backend streams back.
 
+**Supports Amazon Bedrock Managed Knowledge Bases via Agentic Retrieval Stream**
+(`AgenticRetrieveStream`) — the required path for Managed Knowledge Bases, and also
+usable for multi-KB fan-out — **and standard Retrieve and Generate**
+(`RetrieveAndGenerate(Stream)`) against self-managed / vector Knowledge Bases. See
+[Prerequisites](#prerequisites) below for which mode your Knowledge Base needs.
+
 > **This is sample code, for non-production usage.** You should work with your security
 > and legal teams to meet your organizational security, regulatory, and compliance
 > requirements before deployment.
@@ -37,10 +43,14 @@ only renders what that backend streams back.
 - **Node.js 20+** and npm (the reference backend uses the AWS SDK for JavaScript v3).
 - To run against real data (not just build/test): an **AWS account** with **Amazon
   Bedrock model access enabled**, at least one **Bedrock Knowledge Base**, and AWS
-  credentials available to the backend via the standard SDK credential chain. Managed
-  Knowledge Bases require the agentic path (`AGENTIC=true`) and an **inference-profile
-  ARN** rather than a raw foundation-model ARN — see
-  [`packages/kb-chat-reference-backend/README.md`](packages/kb-chat-reference-backend/README.md).
+  credentials available to the backend via the standard SDK credential chain.
+  - **Managed Knowledge Base:** set `AGENTIC=true` and use an **inference-profile
+    ARN** (not a raw foundation-model ARN) — `RetrieveAndGenerate(Stream)` rejects
+    Managed Knowledge Bases, so the agentic path is required.
+  - **Self-managed / vector Knowledge Base:** the default `RetrieveAndGenerate(Stream)`
+    path works as-is (`AGENTIC` unset or `false`).
+  - See [`packages/kb-chat-reference-backend/README.md`](packages/kb-chat-reference-backend/README.md)
+    for full setup detail.
 - Building/testing the packages requires **no AWS account** — only running against
   Bedrock does.
 
